@@ -181,6 +181,7 @@ public class TwitchStreamAudioSourceManager implements AudioSourceManager, HttpC
     try (HttpInterface httpInterface = getHttpInterface()) {
       // helix/streams?user_login=name
       HttpUriRequest request = createGetRequest("https://api.twitch.tv/kraken/streams/" + name + "?stream_type=all");
+      request.setHeader("Accept", "application/vnd.twitchtv.v5+json");
 
       return HttpClientTools.fetchResponseAsJson(httpInterface, request);
     } catch (IOException e) {
